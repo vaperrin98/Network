@@ -30,8 +30,9 @@ bool Network::add_link(const size_t& node_1, const size_t& node_2) {
 
 
 /* Choice of conception for random connect:
-I chose to, for each node, calculate a number of links with the Poisson distribution
-and to add them all (not considering the state of the node */
+ * I chose to, for each node, calculate a number of links with the Poisson distribution
+ * and to add them all (not considering the state of the node at that moment)
+ * thus the size_t returned is the number of links that are present */
 size_t Network::random_connect(const double& mean) {
 	links.erase(links.begin(), links.end());
 	size_t count_up(0);
