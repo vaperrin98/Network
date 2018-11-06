@@ -28,15 +28,16 @@ bool Network::add_link(const size_t& node_1, const size_t& node_2) {
 	return true;
 }
 
-	
+
+/* Choice of conception for random connect:
+I chose to, for each node, calculate a number of links with the Poisson distrbution
+and to add them all (not considering the state of the node */
 size_t Network::random_connect(const double& mean) {
 	links.erase(links.begin(), links.end());
 	size_t count_up(0);
 	
 	for (size_t i(0); i < values.size(); ++i) {
 		int nb_links(RNG.poisson(mean));
-		//int nb_links(RNG.poisson(mean)-degree(values[i]));
-		//if (nb_links > 0) {
 		vector<int> nodes_links(nb_links);
 		int lower(0);
 		int upper(values.size());
@@ -47,7 +48,6 @@ size_t Network::random_connect(const double& mean) {
 			} 
 			add_link(values[i], nodes_links[j]);
 		}
-	//}
 	}
 	return count_up;
 }
